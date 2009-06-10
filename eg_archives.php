@@ -3,7 +3,7 @@
 Plugin Name: EG-Archives
 Plugin URI: http://www.emmanuelgeorjon.com/plugin-eg-archives-1745
 Description: Enhanced archive widget.
-Version: 1.00
+Version: 1.0.1
 Author: Emmanuel GEORJON
 Author URI: http://www.emmanuelgeorjon.com/
 */
@@ -75,32 +75,39 @@ function eg_get_archives($args = '') {
 			$limit = ' LIMIT '.$limit;
 		}
 	
-		$query = "SELECT DISTINCT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, count(ID) as posts FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' GROUP BY YEAR(post_date), MONTH(post_date) ORDER BY post_date DESC";
+		$query = "SELECT DISTINCT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, count(ID) as posts FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' GROUP BY YEAR(post_date), MONTH(post_date) ORDER BY post_date DESC $limit";
 
 		// Manage cache: keep the result of the query
 		$key = md5($query);
-		$cache = wp_cache_get( 'wp_get_archives' , 'eg_archives');
+		$cache = wp_cache_get( 'eg_get_archives' , 'eg_archives');
 		if ( !isset( $cache[ $key ] ) ) {
-			$arcresults = $wpdb->get_results($query);
-			$cache[ $key ] = $arcresults;
-			wp_cache_add( 'wp_get_archives', $cache, 'eg_archives' );
+			$arcresults  = $wpdb->get_results($query);
+			$cache[$key] = $arcresults;
+			wp_cache_add( 'eg_get_archives', $cache, 'eg_archives' );
 		} else {
-			$arcresults = $cache[ $key ];
+			$arcresults = $cache[$key];
 		}
 		// Build the archive list
 		if ( $arcresults ) {
-			$afterafter = $after;
-			$current_year= '';
+		
+			foreach ( (array) $arcresults as $arcresult ) {
+				if (! isset($year_counts[$arcresult->year])) $year_counts[$arcresult->year] = 0;
+				$year_counts[$arcresult->year] += $arcresult->posts;
+			}
+		
+			$afterafter   = $after;
+			$current_year = '';
 			foreach ( (array) $arcresults as $arcresult ) {
 				if ($arcresult->year < $pivot) {
 					// Display list yearly
+					$year_count += $arcresult->posts;
 					if ($current_year != $arcresult->year) {
-						$url = get_year_link($arcresult->year);
+						$url  = get_year_link($arcresult->year);
 						$text = sprintf('%d', $arcresult->year);
 						if ($show_post_count)
-							$after = '&nbsp;('.$arcresult->posts.')' . $afterafter;
-						$output .= get_archives_link($url, $text, $format, $before, $after);
-						$current_year = $arcresult->year;					
+							$after = '&nbsp;('.$year_counts[$arcresult->year].')' . $afterafter;
+						$output       .= get_archives_link($url, $text, $format, $before, $after);
+						$current_year  = $arcresult->year;
 					}
 				}
 				else {
