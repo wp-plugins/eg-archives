@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: EG-Archives
-Plugin URI: http://www.emmanuelgeorjon.com/plugin-eg-archives-1745
+Plugin URI: http://www.emmanuelgeorjon.com/en/plugin-eg-archives-1745
 Description: Enhanced archive widget.
-Version: 1.0.1
+Version: 1.1.0
 Author: Emmanuel GEORJON
 Author URI: http://www.emmanuelgeorjon.com/
 */

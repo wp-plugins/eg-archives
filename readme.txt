@@ -3,8 +3,8 @@ Contributors: Emmanuel GEORJON
 Donate link: http://www.emmanuelgeorjon.com/
 Tags: archive, widget
 Requires at least: 2.6
-Tested up to: 2.8
-Stable tag: 1.0.1
+Tested up to: 2.8.3
+Stable tag: 1.1.0
 
 EG-Archives provides a widget (and a template tag) to display archives in yearly mode, AND monthly, according a specified pivot date.
 
@@ -23,6 +23,16 @@ With the **EG-Archives** widget, you can choose
 
 A specific type is added: the "mixed Yearly/monthly" type.
 With this type, you can display list of archives in yearly mode before a specified year, and in monthly mode after this specified date. This type allows to shorten list, and is very useful if you don't publish too many posts per year.
+
+= Translations =
+
+The plugin comes with English, French and Russian. Thanks to the following people for their contributions:
+
+* Russian (ru) - [Fatcow](www.fatcow.com)
+
+If you want to help to translate the plugin to your language, please have a look at the eg_archives.pot file which contains all definitions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows).
+
+If you have created your own language pack, or have an update of an existing one, you can send [gettext .po and .mo files](http://codex.wordpress.org/Translating_WordPress) to me so that I can bundle it into the plugin.
 
 == Installation ==
 
@@ -77,6 +87,10 @@ None.
 
 == Version history ==
 
+* Version 1.1.0 - Aug 09th, 2009
+	* New feature:
+		* Translation into Russian
+
 * Version 1.0.1 - June 10th, 2009
 	* Bug fix: 
 		* Wrong count of posts,
@@ -89,7 +103,4 @@ None.
 
 This plugin is released under the GPL, you can use it free of charge on your personal or commercial blog.
 
-== Translations ==
-
-The plugin comes with French and English translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information about activating the translation. If you want to help to translate the plugin to your language, please have a look at the eg_series.pot file which contains all defintions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows).
 
