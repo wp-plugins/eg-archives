@@ -85,19 +85,20 @@ Arguments are the same than the standard WordPress function `wp_get_archives`.
 
 None.
 
-== Version history ==
+== Changelog ==
 
-* Version 1.1.0 - Aug 09th, 2009
-	* New feature:
-		* Translation into Russian
+= Version 1.1.0 - Aug 11th, 2009 =
 
-* Version 1.0.1 - June 10th, 2009
-	* Bug fix: 
-		* Wrong count of posts,
-		* Limit parameter doesn't work,
+* New: Translation into Russian
 
-* Version 1.0.0 - June 7th, 2009
-	* Initial release
+= Version 1.0.1 - June 10th, 2009 =
+
+* Bugfix: Wrong count of posts,
+* Bugfix: Limit parameter doesn't work,
+
+= Version 1.0.0 - June 7th, 2009 =
+
+* Initial release
 
 == Licence ==
 
