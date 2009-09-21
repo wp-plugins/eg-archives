@@ -3,7 +3,7 @@
 Plugin Name: EG-Archives
 Plugin URI: http://www.emmanuelgeorjon.com/en/plugin-eg-archives-1745
 Description: Enhanced archive widget.
-Version: 1.1.0
+Version: 1.1.1
 Author: Emmanuel GEORJON
 Author URI: http://www.emmanuelgeorjon.com/
 */
