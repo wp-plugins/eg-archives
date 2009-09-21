@@ -29,6 +29,7 @@ With this type, you can display list of archives in yearly mode before a specifi
 The plugin comes with English, French and Russian. Thanks to the following people for their contributions:
 
 * Russian (ru) - [Fatcow](http://www.fatcow.com)
+* Deutsch (de) - [Franck Hempel](http://www.frank-hempel.de/)
 
 If you want to help to translate the plugin to your language, please have a look at the eg_archives.pot file which contains all definitions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows).
 
@@ -87,9 +88,13 @@ None.
 
 == Changelog ==
 
+= Version 1.1.1 - Sept 21st, 2009 =
+
+* New: Deutsch translation (thanks to Franck Hempel)
+
 = Version 1.1.0 - Aug 11th, 2009 =
 
-* New: Translation into Russian
+* New: Translation into Russian (thanks to Fatcow)
 
 = Version 1.0.1 - June 10th, 2009 =
 
