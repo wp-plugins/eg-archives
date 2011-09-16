@@ -2,9 +2,9 @@
 Contributors: Emmanuel GEORJON
 Donate link: http://www.emmanuelgeorjon.com/
 Tags: archive, widget
-Requires at least: 2.6
-Tested up to: 2.8.4
-Stable tag: 1.1.1
+Requires at least: 3.0.0
+Tested up to: 3.2.1
+Stable tag: 2.0.0
 
 EG-Archives provides a widget (and a template tag) to display archives in yearly mode, AND monthly, according a specified pivot date.
 
@@ -20,20 +20,27 @@ With the **EG-Archives** widget, you can choose
 * the title,
 * the format of the list (simple or dropdown list),
 * the type: Yearly, Monthly, ... 
+* category, to display archives for only specific categories,
+* Number of columns (1 or 2)
 
 A specific type is added: the "mixed Yearly/monthly" type.
-With this type, you can display list of archives in yearly mode before a specified year, and in monthly mode after this specified date. This type allows to shorten list, and is very useful if you don't publish too many posts per year.
+With this type, you can display list of archives in yearly mode before a specified year, and in monthly mode after this specified date. This type allows to shorten list, and is very useful if you don't publish too many posts per year. Example:
+
+* August 2011
+* April 2011
+* February 2011
+* January 2011
+* 2010
+* 2009
 
 = Translations =
 
-The plugin comes with English, French and Russian. Thanks to the following people for their contributions:
+The plugin comes up with 4 translations. Thanks to the following people for their contributions:
 
-* Russian (ru) - [Fatcow](http://www.fatcow.com)
-* Deutsch (de) - [Franck Hempel](http://www.frank-hempel.de/)
-
-If you want to help to translate the plugin to your language, please have a look at the eg_archives.pot file which contains all definitions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows).
-
-If you have created your own language pack, or have an update of an existing one, you can send [gettext .po and .mo files](http://codex.wordpress.org/Translating_WordPress) to me so that I can bundle it into the plugin.
+* French (FR)
+* German (DE) - [Frank W. Hempel](http://www.frank-hempel.de/)
+* Bulgarian (BG) - [Web Geek, Dimitar Kolevski](http://webhostinggeeks.com/)
+* Russian (RU) - [FatCow](http://www.fatcow.com/) 
 
 == Installation ==
 
@@ -43,8 +50,21 @@ If you have created your own language pack, or have an update of an existing one
 1. Activate EG-Archives through the 'Plugins' menu in WordPress,
 1. The plugin is ready to be used,
 
-The plugin is now ready to be used.
-You can also use the WordPress 2.7 features, and install the plugin directly from the WordPress interface.
+You can also install the plugin directly from the WordPress interface.
+
+One the installation is done, you can go to the menu **Options / EG-Archives**, to setup the options.
+
+== Upgrade Notice ==
+
+The version 1.1 of the plugin used the old Widget API. The new version 2.0 is using the API published with WordPress 2.8. The widgets options are different between the two API. So, options defined with EG-Archives 1.1.x will be lost after the upgrade.
+
+The recommendation for a clean upgrade is
+
+1. Remove the widget from your sidebar,
+1. Upgrade the plugin,
+1. Install the new widget in your sidebar,
+1. Setup the options with the menu **Options / EG-Archives**
+
 
 == Usage ==
 
@@ -73,9 +93,10 @@ Arguments are the same than the standard WordPress function `wp_get_archives`.
 * **show_post_count** (boolean) Display number of posts in an archive (1 - true) or do not (0 - false). For use with all type except 'postbypost'. Defaults to 0,
 * **echo** (boolean) Display the output (1 - true) or return it (0 - false). Defaults to 1. 
 
-`eg_get_archives` accept an additional argument:
+`eg_get_archives` accept an additional arguments:
 
 * **pivot** (integer) The "pivot" year. Before the pivot, archives are listed i yearly mode, after archives are listed in monthly mode. Default: current year (currently 2009)
+* **columns** (integer) Number of columns to display list. Possible values are 1 or 2. Default is 1.
 
 == Screenshots ==
 
@@ -88,18 +109,29 @@ None.
 
 == Changelog ==
 
+= Version 2.0.0 - Sept 16th, 2011 =
+
+* Update the plugin for full WordPress 3.2.x compatibility,
+* New: display list in 1 or 2 columns,
+* New: ability to load plugin's stylesheet, or to use your own stylesheet,
+* New: ability to disable the default WordPress' Archive widget,
+* Change: widget library is using WordPress 2.8 API now.
+
 = Version 1.1.1 - Sept 21st, 2009 =
 
 * New: Deutsch translation (thanks to Franck Hempel)
 
 = Version 1.1.0 - Aug 11th, 2009 =
 
+* New: Allow multi-widget
+* New: WP 2.8 compliant
 * New: Translation into Russian (thanks to Fatcow)
 
 = Version 1.0.1 - June 10th, 2009 =
 
-* Bugfix: Wrong count of posts,
-* Bugfix: Limit parameter doesn't work,
+* Bug fix: 
+	* Wrong count of posts,
+	* Limit parameter doesn't work,
 
 = Version 1.0.0 - June 7th, 2009 =
 
@@ -109,4 +141,7 @@ None.
 
 This plugin is released under the GPL, you can use it free of charge on your personal or commercial blog.
 
+== Translations ==
+
+The plugin comes with French and English translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information about activating the translation. If you want to help to translate the plugin to your language, please have a look at the eg_series.pot file which contains all defintions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows).
 

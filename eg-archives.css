@@ -1,0 +1,6 @@
+
+div.eg-archives-columns:before,
+div.eg-archives-columns:after {content: '.';display: block;overflow: hidden;visibility: hidden;font-size: 0;line-height: 0;width: 0;height: 0;}
+div.eg-archives-columns:after{clear: both;}
+div.eg-archives-columns {zoom: 1;}
+div.eg-archives-columns ul { float: left; 	margin: 0.45%; padding: 0.45%; width: 48%;}
