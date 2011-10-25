@@ -1,0 +1,223 @@
+# LANGUAGE (ft_FR) translation for WordPress.
+# Copyright (C) 2009 WordPress contributors.
+# This file is distributed under the same license as the WordPress package.
+# Emmanuel GEORJON <blog@emmanuelgeorjon.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: EG-Widget-Archive\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/eg-archives\n"
+"POT-Creation-Date: 2011-09-10 07:22:18+00:00\n"
+"PO-Revision-Date: 2011-09-16 20:23+0100\n"
+"Last-Translator: Franck Hempel <info@frank-hempel.de>\n"
+"Language-Team: Emmanuel GEORJON\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: eg_archives_admin.php:25
+#: eg_archives_admin_menu_inc.php:5
+msgid "EG-Archives Settings"
+msgstr "EG-Archiv Einstellungen"
+
+#: eg_archives_admin.php:46
+msgid "Plugin's homepage"
+msgstr "Plugin Homepage"
+
+#: eg_archives_admin.php:47
+msgid "Frequently Asked Questions"
+msgstr "FAQ"
+
+#: eg_archives_admin.php:48
+msgid "Support forum"
+msgstr "Support-Forum"
+
+#: eg_archives_admin.php:49
+msgid "Last changes"
+msgstr "Letzte &Auml;nderungen"
+
+#: eg_archives_admin.php:50
+msgid "Links"
+msgstr "Links"
+
+#: eg_archives_admin.php:52
+msgid "This plugin required and requires many hours of work. If you use the plugin, and like it, feel free to show your appreciation to the author."
+msgstr "Dieses Plugin ben&ouml;tigte und ben&ouml;tigt viele Stunden Arbeit. Wenn Du dieses Plugin nutzt, zeig ruhig Deine Anerkennung f&uuml;r den Autor."
+
+#: eg_archives_admin.php:61
+msgid "PayPal - The safer, easier way to pay online!"
+msgstr "PayPal - die sicherere, leichtere Art online zu zahlen!"
+
+#: eg_archives_admin.php:64
+msgid "Donate"
+msgstr "Spende"
+
+#: eg_archives_admin_menu_inc.php:11
+msgid "Styles"
+msgstr "Styles"
+
+#: eg_archives_admin_menu_inc.php:14
+msgid "Default Widget"
+msgstr "Standard-Widget"
+
+#: eg_archives_admin_menu_inc.php:17
+msgid "Uninstallation"
+msgstr "Deinstallation"
+
+#: eg_archives_admin_menu_inc.php:23
+msgid "Stylesheet"
+msgstr "Stylesheet"
+
+#: eg_archives_admin_menu_inc.php:25
+msgid "Automatically load plugins' stylesheet"
+msgstr "Plugin-Stylesheet automatisch laden"
+
+#: eg_archives_admin_menu_inc.php:26
+msgid "Check if you want to use the plugin stylesheet file, uncheck if you want to use your own styles, or include styles on the theme stylesheet."
+msgstr "Markieren, wenn Du das Standard-Stylesheet benutzen m&ouml;chtest. Nicht markieren, wenn Du Dein eigenes CSS nutzen m&ouml;chtest oder binde Dein eigenes Stylesheet ein."
+
+#: eg_archives_admin_menu_inc.php:30
+msgid "Options"
+msgstr "Optionen"
+
+#: eg_archives_admin_menu_inc.php:32
+msgid "Delete options during uninstallation."
+msgstr "L&ouml;schoptionen w&auml;hrend der Deinstallation."
+
+#: eg_archives_admin_menu_inc.php:33
+msgid "Be careful: these actions cannot be cancelled. All plugin's options will be deleted while plugin uninstallation."
+msgstr "Achtung: Diese Aktion kann nicht abgebrochen werden. Alle Plugin-Optionen werden w&auml;hrend der Plugin-Deinstallation gel&ouml;scht!""
+
+#: eg_archives_admin_menu_inc.php:37
+msgid "Disable widget"
+msgstr "Widget deaktivieren"
+
+#: eg_archives_admin_menu_inc.php:39
+msgid "Disable the default WordPress Archive widget"
+msgstr "Standard Wordpress Archiv-Widget deaktivieren."
+
+#: eg_archives.php:43
+msgid "Title"
+msgstr "Titel"
+
+#: eg_archives.php:44
+msgid "Group by"
+msgstr "Anzeigen nach"
+
+#: eg_archives.php:45
+msgid "Yearly"
+msgstr "Jahren"
+
+#: eg_archives.php:46
+msgid "Monthly"
+msgstr "Monaten"
+
+#: eg_archives.php:47
+msgid "Yearly/Monthly"
+msgstr "Jahre/Monate"
+
+#: eg_archives.php:48
+msgid "Yearly/Monthly with only month displayed"
+msgstr "Jahre/Monate, nur Monate anzeigen."
+
+#: eg_archives.php:49
+msgid "Weekly"
+msgstr "Wochen"
+
+#: eg_archives.php:50
+msgid "Daily"
+msgstr "Tagen"
+
+#: eg_archives.php:51
+msgid "Post by post"
+msgstr "Nachrichten"
+
+#: eg_archives.php:52
+msgid "Pivot year"
+msgstr "Aktuelles Jahr (bei \"Jahren/Monaten\")"
+
+#: eg_archives.php:53
+msgid "Limit"
+msgstr "Anzahl sichtbare Eintr&auml;ge"
+
+#: eg_archives.php:54
+msgid "Format"
+msgstr "Format"
+
+#: eg_archives.php:55
+msgid "Html list"
+msgstr "HTML - Liste"
+
+#: eg_archives.php:55
+msgid "Dropdown list"
+msgstr "Dropdown-Liste"
+
+#: eg_archives.php:56
+msgid "Show post count"
+msgstr "Zeige Anzahl der Posts"
+
+#: eg_archives.php:56
+msgid "No"
+msgstr "Nein"
+
+#: eg_archives.php:56
+msgid "Yes"
+msgstr "Ja"
+
+#: eg_archives.php:56
+msgid "Number of columns"
+msgstr "Anzahl der Spalten"
+
+#: eg_archives.php:62
+#, fuzzy
+msgid "Archives"
+msgstr "Archive"
+
+#: eg_archives.php:242
+msgid "Advanced archives widget"
+msgstr "Erweitertes Archiv Widget"
+
+#: lib/eg-widgets.inc.php:603
+msgid "Save"
+msgstr "Sichern"
+
+#: lib/eg-widgets.inc.php:
+msgid "Show widget on pages"
+msgstr "Zeige Widget auf Seiten"
+
+#: lib/eg-widgets.inc.php:
+msgid "All"
+msgstr "Alle"
+
+#: lib/eg-widgets.inc.php:
+#, fuzzy
+msgid "Categories"
+msgstr "Kategorien"
+
+#: lib/eg-widgets.inc.php:
+msgid "Home"
+msgstr "Home"
+
+#: lib/eg-widgets.inc.php:
+msgid "Tags"
+msgstr "Tags"
+
+#: lib/eg-widgets.inc.php:
+msgid "Posts"
+msgstr "Nachrichten"
+
+#: lib/eg-widgets.inc.php:
+msgid "Show widget, for"
+msgstr "Widget zeigen f&uuml;r"
+
+#: lib/eg-widgets.inc.php:
+msgid "Show widget, when"
+msgstr "Widget zeigen wenn"
+
+#: lib/eg-widgets.inc.php:
+#, fuzzy
+msgid "Hide wiget, when"
+msgstr "Widget verstecken wenn"
+
+#~ msgid "Select entry"
+#~ msgstr "Eintrag w&auml;hlen"
