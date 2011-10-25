@@ -18,83 +18,83 @@ msgstr ""
 #: eg_archives_admin.php:25
 #: eg_archives_admin_menu_inc.php:5
 msgid "EG-Archives Settings"
-msgstr ""
+msgstr "EG-Archiv Einstellungen"
 
 #: eg_archives_admin.php:46
 msgid "Plugin's homepage"
-msgstr ""
+msgstr "Plugin Homepage"
 
 #: eg_archives_admin.php:47
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "FAQ"
 
 #: eg_archives_admin.php:48
 msgid "Support forum"
-msgstr ""
+msgstr "Support-Forum"
 
 #: eg_archives_admin.php:49
 msgid "Last changes"
-msgstr ""
+msgstr "Letzte &Auml;nderungen"
 
 #: eg_archives_admin.php:50
 msgid "Links"
-msgstr ""
+msgstr "Links"
 
 #: eg_archives_admin.php:52
 msgid "This plugin required and requires many hours of work. If you use the plugin, and like it, feel free to show your appreciation to the author."
-msgstr ""
+msgstr "Dieses Plugin ben&ouml;tigte und ben&ouml;tigt viele Stunden Arbeit. Wenn Du dieses Plugin nutzt, zeig ruhig Deine Anerkennung f&uuml;r den Autor."
 
 #: eg_archives_admin.php:61
 msgid "PayPal - The safer, easier way to pay online!"
-msgstr ""
+msgstr "PayPal - die sicherere, leichtere Art online zu zahlen!"
 
 #: eg_archives_admin.php:64
 msgid "Donate"
-msgstr ""
+msgstr "Spende"
 
 #: eg_archives_admin_menu_inc.php:11
 msgid "Styles"
-msgstr ""
+msgstr "Styles"
 
 #: eg_archives_admin_menu_inc.php:14
 msgid "Default Widget"
-msgstr ""
+msgstr "Standard-Widget"
 
 #: eg_archives_admin_menu_inc.php:17
 msgid "Uninstallation"
-msgstr ""
+msgstr "Deinstallation"
 
 #: eg_archives_admin_menu_inc.php:23
 msgid "Stylesheet"
-msgstr ""
+msgstr "Stylesheet"
 
 #: eg_archives_admin_menu_inc.php:25
 msgid "Automatically load plugins' stylesheet"
-msgstr ""
+msgstr "Plugin-Stylesheet automatisch laden"
 
 #: eg_archives_admin_menu_inc.php:26
 msgid "Check if you want to use the plugin stylesheet file, uncheck if you want to use your own styles, or include styles on the theme stylesheet."
-msgstr ""
+msgstr "Markieren, wenn Du das Standard-Stylesheet benutzen m&ouml;chtest. Nicht markieren, wenn Du Dein eigenes CSS nutzen m&ouml;chtest oder binde Dein eigenes Stylesheet ein."
 
 #: eg_archives_admin_menu_inc.php:30
 msgid "Options"
-msgstr ""
+msgstr "Optionen"
 
 #: eg_archives_admin_menu_inc.php:32
 msgid "Delete options during uninstallation."
-msgstr ""
+msgstr "L&ouml;schoptionen w&auml;hrend der Deinstallation."
 
 #: eg_archives_admin_menu_inc.php:33
 msgid "Be careful: these actions cannot be cancelled. All plugin's options will be deleted while plugin uninstallation."
-msgstr ""
+msgstr "Achtung: Diese Aktion kann nicht abgebrochen werden. Alle Plugin-Optionen werden w&auml;hrend der Plugin-Deinstallation gel&ouml;scht!""
 
 #: eg_archives_admin_menu_inc.php:37
 msgid "Disable widget"
-msgstr ""
+msgstr "Widget deaktivieren"
 
 #: eg_archives_admin_menu_inc.php:39
 msgid "Disable the default WordPress Archive widget"
-msgstr ""
+msgstr "Standard Wordpress Archiv-Widget deaktivieren."
 
 #: eg_archives.php:43
 msgid "Title"
@@ -114,11 +114,11 @@ msgstr "Monaten"
 
 #: eg_archives.php:47
 msgid "Yearly/Monthly"
-msgstr "Jahren/Monaten"
+msgstr "Jahre/Monate"
 
 #: eg_archives.php:48
 msgid "Yearly/Monthly with only month displayed"
-msgstr ""
+msgstr "Jahre/Monate, nur Monate anzeigen."
 
 #: eg_archives.php:49
 msgid "Weekly"
@@ -146,7 +146,7 @@ msgstr "Format"
 
 #: eg_archives.php:55
 msgid "Html list"
-msgstr "HTM- Liste"
+msgstr "HTML - Liste"
 
 #: eg_archives.php:55
 msgid "Dropdown list"
@@ -166,7 +166,7 @@ msgstr "Ja"
 
 #: eg_archives.php:56
 msgid "Number of columns"
-msgstr ""
+msgstr "Anzahl der Spalten"
 
 #: eg_archives.php:62
 #, fuzzy
@@ -179,7 +179,7 @@ msgstr "Erweitertes Archiv Widget"
 
 #: lib/eg-widgets.inc.php:603
 msgid "Save"
-msgstr ""
+msgstr "Sichern"
 
 #: lib/eg-widgets.inc.php:
 msgid "Show widget on pages"
@@ -196,11 +196,11 @@ msgstr "Kategorien"
 
 #: lib/eg-widgets.inc.php:
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: lib/eg-widgets.inc.php:
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: lib/eg-widgets.inc.php:
 msgid "Posts"
@@ -221,4 +221,3 @@ msgstr "Widget verstecken wenn"
 
 #~ msgid "Select entry"
 #~ msgstr "Eintrag w&auml;hlen"
-

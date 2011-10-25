@@ -3,7 +3,7 @@
 Package Name: EG-Forms
 Package URI:
 Description: Class for WordPress plugins
-Version: 2.0.0
+Version: 2.1.0
 Author: Emmanuel GEORJON
 Author URI: http://www.emmanuelgeorjon.com/
 */
@@ -26,87 +26,35 @@ Author URI: http://www.emmanuelgeorjon.com/
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/* Data structure
-
-$form = array(
-		'menu_type'		=> ''   posts, options, settings, tools, theme, users, media, links, pages
-		'title' 		=> '',
-		'header'		=> '',
-		'footer'		=> '',
-		'icon'			=> '',
-		'access_level'	=> 'manage_options',
-		'sections'		=> array(
-			1 => array(
-				'title' 	=> '',
-				'header'	=> '',
-				'footer'	=> ''
-			),
-		), // End of sections
-		'fields'		=> array(
-			array('section'	=> 1,
-				'name'		=> '',
-				'label'		=> '',
-				'after'		=> '',
-				'desc'		=> '',
-				'type'		=> 'select',  text, password, textarea, checkbox, radio, select, grid_select
-				'options'	=> array( )
-			)
-		)
-	);
-*/
-
-if (!class_exists('EG_Form_200')) {
+if (!class_exists('EG_Form_210')) {
 
 	/**
-	  * Class EG_Form_200
+	  * Class EG_Form_210
 	  *
 	  * Provide some functions to create a WordPress plugin
 	  *
 	 */
-	Class EG_Form_200 {
+	Class EG_Form_210 {
 
 		var $options_entry;
 		var $options_group;
 		var $textdomain;
-		var $base_url;
-		var $form_only;
-		var $form;
+		var $sidebar_callback;
+		var $title;
+		var $header;
+		var $footer;
 
-		var $field_defaults = array(
-			'section'	=> 0,
-			'name'		=> '',
-			'label'		=> '',
-			'before'	=> '',
-			'after'		=> '',
-			'desc'		=> '',
-			'type'		=> '',
-			'options'	=> '',
-			'size'		=> 'regular',
-			'status'	=> ''
-		);
+		var $tabs	  = array();
+		var $sections = array();
+		var $fields	  = array();
 
-		var $section_defaults = array(
-				'title' 	=> 'General',
-				'header'	=> '',
-				'footer'	=> ''
-		);
+		var $debug_msg, $debug_file;
 
-		var $page_list = array ( 'posts'	=> 'edit.php',
-								 'options'	=> 'options-general.php',
-								 'settings'	=> 'options-general.php',
-								 'tools'	=> 'tools.php',
-								 'theme'	=> 'themes.php',
-								 'users'	=> 'users.php',
-								/*
-								'media'	=> 'add_media_page',
-								 'links'	=> 'add_links_page', */
-								 'pages'	=> 'edit.php');
-
-		function EG_Form_200($page_id, $options_entry, $textdomain, $base_url, $form, $form_only=FALSE) {
+		function EG_Form_210($page_id, $title, $options_entry, $textdomain=FALSE, $header='', $footer='', $sidebar_callback=FALSE) {
 
 			register_shutdown_function(array(&$this, '__destruct'));
-			$this->__construct($page_id, $options_entry, $textdomain, $base_url, $form, $form_only);
-		} // End of EG_Form_200
+			$this->__construct($page_id, $title, $options_entry, $textdomain, $header, $footer, $sidebar_callback);
+		} // End of EG_Form_210
 
 		/**
 		  * Class contructor
@@ -115,16 +63,21 @@ if (!class_exists('EG_Form_200')) {
 		  * @package EG-Forms
 		  * @return object
 		  */
-		function __construct($page_id, $options_entry, $textdomain, $base_url, $form, $form_only=FALSE) {
+		function __construct($page_id, $title, $options_entry, $textdomain=FALSE, $header='', $footer='', $sidebar_callback=FALSE) {
 
+			$this->title 			 = $title;
+			$this->header 			 = $header;
+			$this->footer			 = $footer;
 			$this->options_entry     = $options_entry;
 			$this->options_group	 = $page_id.'_group';
 			$this->textdomain		 = $textdomain;
-			$this->base_url			 = $base_url;
-			$this->form_only		 = $form_only;
-			$this->form			 	 = $form;
+			$this->sidebar_action    = 'eg_form_sidebar_'.$page_id;
+
+			if ($sidebar_callback !== FALSE)
+				add_action($this->sidebar_action, $sidebar_callback);
 
 			add_action('admin_init',array( &$this, 'admin_init'));
+
 		} // End of __construct
 
 		/**
@@ -138,28 +91,70 @@ if (!class_exists('EG_Form_200')) {
 			// Nothing
 		} // End of __destruct
 
+		function add_tab($id, $title, $header='', $footer='') {
+			$this->tabs[$id] = array('id' => $id, 'title' =>$title, 'header' => $header, 'footer' => $footer);
+		} // End of add_tab
+
+		function add_section($args) {
+			$section_defaults = array(
+					'tab'		=> '',
+					'title' 	=> 'General',
+					'header'	=> '',
+					'footer'	=> ''
+			);
+			$this->sections[] = wp_parse_args($args, $section_defaults);
+
+			return (sizeof($this->sections)-1);
+		} // End of add_section
+
+		function add_field($args) {
+			$field_defaults = array(
+					'section'	=> 0,
+					'name'		=> '',
+					'label'		=> '',
+					'before'	=> '',
+					'after'		=> '',
+					'desc'		=> '',
+					'type'		=> '',
+					'options'	=> '',
+					'size'		=> 'regular',
+					'status'	=> ''
+				);
+			$this->fields[] = wp_parse_args($args, $field_defaults);
+
+			return (sizeof($this->fields)-1);
+		} // End of add_field
+
+		function set_debug_mode($debug_mode = FALSE, $debug_file='') {
+			$this->debug_msg = $debug_mode;
+			if ($debug_file != '')
+				$this->debug_file = $debug_file;
+		}
+
 		function admin_init() {
 			wp_enqueue_style('dashboard');
 			wp_enqueue_script( 'dashboard' );
-			// wp_enqueue_script( 'postbox' );
 			register_setting($this->options_group, $this->options_entry, array(&$this, 'options_validation'));
 		} // End of admin_init
 
 		function options_validation($inputs) {
+
+			$this->display_debug_info('EG-Forms: Starting sanitizing options');
+
 			$all_options = get_option($this->options_entry);
 
 			$validated_inputs = array();
-			foreach ($this->form['fields'] as $field) {
-				
+			foreach ($this->fields as $field) {
+
 				// If field exist in plugin options
 				$key = $field['name'];
 				if ( isset($all_options[$key])) {
 					switch ($field['type']) {
-						case 'checkbox': 
+						case 'checkbox':
 							if (! isset($inputs[$key])) $validated_inputs[$key] = 0;
 							else $validated_inputs[$key] = $inputs[$key];
 						break;
-						
+
 						case 'grid_select':
 							$validated_inputs[$key] = array();
 							if (isset($inputs[$key]) && is_array($inputs[$key])) {
@@ -169,7 +164,7 @@ if (!class_exists('EG_Form_200')) {
 								}
 							} // End of isset($inputs[$key]
 						break;
-						
+
 						default:
 							if (isset($inputs[$key])) {
 								if (is_array($inputs[$key])) {
@@ -184,6 +179,8 @@ if (!class_exists('EG_Form_200')) {
 					} // End of switch
 				} // End of field exists in plugin options
 			} // End of foreach
+			$this->display_debug_info('EG-Forms: Sanitize options done');
+
 			return (wp_parse_args($validated_inputs, $all_options));
 		} // End of options_validation
 
@@ -217,12 +214,8 @@ if (!class_exists('EG_Form_200')) {
 				foreach ($field['options'] as $key => $value) {
 					if ($field['type'] == 'radio') $input_name = $entry_name;
 					else $input_name = $entry_name.'['.$key.']';
-					if (!is_array($default_value)) {
-						$checked = ($key == $default_value?'checked':'');
-					}
-					else {
-						$checked = (in_array($key, $default_value)===FALSE?'':'checked');
-					}
+					if (!is_array($default_value)) $checked = ($key == $default_value?'checked':'');
+					else $checked = (in_array($key, $default_value)===FALSE?'':'checked');
 
 					$string .= '<tr><td valign="top">'.
 						'<input type="'.$field['type'].'" name="'.$input_name.'" value="'.$key.'" '.$checked.' '.$field['status'].' /></td>'.
@@ -280,8 +273,8 @@ if (!class_exists('EG_Form_200')) {
 						'<label for="'.$entry_name.'['.$item['value'].']">'.
 						'<select name="'.$entry_name.'['.$item['value'].']" id="'.$field['name'].'['.$item['value'].']" >';
 					foreach ($item['select'] as $key => $value) {
-						if (sizeof($default_value)>0 && 
-							isset($default_value[$item['value']]) && 
+						if (sizeof($default_value)>0 &&
+							isset($default_value[$item['value']]) &&
 							$key == $default_value[$item['value']]) $selected = 'selected';
 						else $selected = '';
 						$string .= '<option value="'.$key.'" '.$selected.'>'.__($value, $this->textdomain).'</option>';
@@ -294,7 +287,7 @@ if (!class_exists('EG_Form_200')) {
 		} // End of display_grid_select
 
 		function display_field($field_id, $defaults) {
-			$field = wp_parse_args($this->form['fields'][$field_id], $this->field_defaults);
+			$field = $this->fields[$field_id];
 
 			$entry_name = $this->options_entry.'['.$field['name'].']';
 			$default_value = $defaults[$field['name']];
@@ -314,9 +307,9 @@ if (!class_exists('EG_Form_200')) {
 			return ($string);
 		} // End of display_field
 
-		function display_section($section_id, $pos, $defaults) {
+		function display_section($section_id, $defaults) {
 
-			$section = wp_parse_args($this->form['sections'][$section_id], $this->section_defaults);
+			$section = $this->sections[$section_id];
 		?>
 			<div class="postbox">
 				<div class="handlediv" title="Click to toggle"><br /></div>
@@ -326,8 +319,8 @@ if (!class_exists('EG_Form_200')) {
 				<?php echo ($section['header']==''?'':'<p>'.__($section['header'], $this->textdomain).'</p>'); ?>
 				<table class="form-table">
 		<?php
-				foreach ($this->form['fields'] as $field_id => $field) {
-					if ($field['section'] == $section_id) 
+				foreach ($this->fields as $field_id => $field) {
+					if ($field['section'] == $section_id)
 						echo $this->display_field($field_id, $defaults);
 				}
 		?>
@@ -341,57 +334,105 @@ if (!class_exists('EG_Form_200')) {
 		} // End of display_section
 
 
-		function display($defaults) {
-			if (! $this->form_only) {
+		function display_page($defaults) {
+			$current_page = (isset($_REQUEST['page'])?$_REQUEST['page']:'');
+			$current_tab  = (isset($_REQUEST['tab'])?$_REQUEST['tab']:'');
+
+			$nav_links='';
+			if (sizeof($this->tabs)>0) {
+
+				foreach ($this->tabs as $id => $tab) {
+					if ($current_tab=='') $current_tab = $id;
+					$class = ( $current_tab == $id ) ? ' nav-tab-active' : '';
+					$nav_links .= '<a class="nav-tab '.$class.'" href="?page='.$current_page.'&tab='.$id.'">'.__($tab['title'], $this->textdomain).'</a>';
+				}
+			}
+			if ($nav_links != '')
+				$nav_links = '<h2 class="nav-tab-wrapper">'.$nav_links.'</h2>';
+
+			$display_sidebar = has_action($this->sidebar_action);
 		?>
 			<div class="wrap">
 				<?php screen_icon(); ?>
-				<h2><?php _e($this->form['title'], $this->textdomain); ?></h2>
-				<div id="poststuff" class="metabox-holder <?php echo (has_action('eg_form_sidebar')?'has-right-sidebar':''); ?>" >
+				<h2><?php _e($this->title, $this->textdomain); ?></h2>
+				<?php echo $nav_links; ?>
+				<div id="poststuff" class="<?php echo (sizeof($this->tabs)>0?'eg-form-border':''); ?> metabox-holder <?php echo ($display_sidebar?'has-right-sidebar':''); ?>">
 		<?php
-			if (has_action('eg_form_sidebar')) {
+			if ($display_sidebar) {
 		?>
 					<div id="side-info-column" class="inner-sidebar">
 						<div id="side-sortables" class="meta-box-sortables ui-sortable">
-							<?php do_action('eg_form_sidebar'); ?>
+							<?php do_action($this->sidebar_action); ?>
 						</div>
 					</div>
 		<?php
 			} // End of sidebar_callback
-		?>					
-					<div id="post-body" <?php echo (has_action('eg_form_sidebar')?'class="has-sidebar"':''); ?>>
-						<div id="post-body-content" <?php echo (has_action('eg_form_sidebar')?'class="has-sidebar-content"':''); ?>>
-							<div id="normal-sortables" class="meta-box-sortables ui-sortable">
-		<?php
-			}  // End of ! form_only
 		?>
-							<form method="post"action="options.php" >
-								<?php settings_fields($this->options_group); ?>
-								<?php echo ($this->form['header']==''?'':'<p>'.__($this->form['header'], $this->textdomain).'</p>'); ?>
-					<?php
-								$number = 0;
-								foreach ($this->form['sections'] as $section_id => $section) {
-									if ($number == 0) $pos = 'first';
-									else if ($number == sizeof($this->form['sections'])) $pos = 'last';
-									else $post = number;
-									$this->display_section($section_id, $pos, $defaults);
-								}
+					<div id="post-body" <?php echo ($display_sidebar ?'class="has-sidebar"':'');?>>
+						<div id="post-body-content" <?php echo ($display_sidebar ?'class="has-sidebar-content"':'');?>>
+							<div id="normal-sortables" class="meta-box-sortables ui-sortable">
 
-								echo ($this->form['footer']==''?'':'<p>'.__($this->form['footer'], $this->textdomain).'</p>');
-					?>
-							</form>
+		<?php
+			$this->display_form($defaults, $current_tab);
+		?>
 							</div>
-			<?php
-			if (! $this->form_only) {
-			?>
 						</div>
 					</div>
 					<br class="clear" />
 				</div>
 			</div>
 		<?php
-			} // End of ! form_only
-		} // End of display
+		} // End of display_page
+
+		function display_form($defaults, $current_tab=NULL) {
+			if ( sizeof($this->tabs)==0) $current_tab='';
+			else {
+				$first_tab    = reset($this->tabs);
+				$current_tab  = (isset($current_tab)?$current_tab:(isset($_REQUEST['tab'])?$_REQUEST['tab']:$first_tab['id']));
+			}
+		?>
+							<form method="post"action="<?php echo admin_url('options.php'); ?>" >
+								<?php settings_fields($this->options_group); ?>
+								<?php echo ($this->header==''?'':'<p>'.__($this->header, $this->textdomain).'</p>'); ?>
+					<?php
+								if (isset($this->tabs[$current_tab]) && $this->tabs[$current_tab]['header']!='')
+									echo '<p>'.__($this->tabs[$current_tab]['header'], $this->textdomain).'</p>';
+
+								foreach ($this->sections as $section_id => $section) {
+									if (sizeof($this->tabs)==0 || $section['tab'] == $current_tab) {
+										$this->display_section($section_id, $defaults);
+									}
+								} // End of foreach section
+								if (isset($this->tabs[$current_tab]) && $this->tabs[$current_tab]['footer']!='')
+									echo '<p>'.__($this->tabs[$current_tab]['footer'], $this->textdomain).'</p>';
+
+								echo ($this->footer==''?'':'<p>'.__($this->footer, $this->textdomain).'</p>');
+					?>
+							</form>
+		<?php
+		} // End of display_form
+
+		/**
+		 * display_debug_info
+		 *
+		 * @package EG-Plugin
+		 *
+		 * @param	string	$msg	message to display
+		 * @return 	none
+		 */
+		function display_debug_info($msg) {
+
+			if ($this->debug_msg) {
+				$debug_info = debug_backtrace(FALSE);
+				$output = date('d-M-Y H:i:s').' - '.$debug_info[1]['function'].' - '.$debug_info[2]['function'].' - '.$msg;
+
+				if ($this->debug_file != '')
+					file_put_contents($this->debug_file, $output."\n", FILE_APPEND);
+				else
+					echo $output.'<br />';
+			}
+		} // End of display_debug_info
+
 	} // End of class
 } // End of class_exists
 

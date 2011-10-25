@@ -4,7 +4,7 @@ Donate link: http://www.emmanuelgeorjon.com/
 Tags: archive, widget
 Requires at least: 3.0.0
 Tested up to: 3.2.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 
 EG-Archives provides a widget (and a template tag) to display archives in yearly mode, AND monthly, according a specified pivot date.
 
@@ -40,7 +40,7 @@ The plugin comes up with 4 translations. Thanks to the following people for thei
 * French (FR)
 * German (DE) - [Frank W. Hempel](http://www.frank-hempel.de/)
 * Bulgarian (BG) - [Web Geek, Dimitar Kolevski](http://webhostinggeeks.com/)
-* Russian (RU) - [FatCow](http://www.fatcow.com/) 
+* Russian (RU) - FatCow
 
 == Installation ==
 
@@ -108,6 +108,12 @@ Arguments are the same than the standard WordPress function `wp_get_archives`.
 None.
 
 == Changelog ==
+
+= Version 2.0.1 - Oct25th , 2011 =
+
+* New: Bulgarian translation
+* Change: updated German translation (thanks to Franck)
+* Change: internal libraries
 
 = Version 2.0.0 - Sept 16th, 2011 =
 

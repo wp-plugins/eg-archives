@@ -1,11 +1,13 @@
 <?php
 /*
-Plugin Name: EG-Archives
-Plugin URI: http://www.emmanuelgeorjon.com/en/plugin-eg-archives-1745
-Description: Enhanced archive widget.
-Version: 2.0.0
-Author: Emmanuel GEORJON
-Author URI: http://www.emmanuelgeorjon.com/
+	Plugin Name: EG-Archives
+	Plugin URI: http://www.emmanuelgeorjon.com/en/plugin-eg-archives-1745
+	Description: Enhanced archive widget.
+	Author: Emmanuel GEORJON
+	Version: 2.0.1
+	Author URI: http://www.emmanuelgeorjon.com/
+	Text Domain: eg-archives
+	Domain Path: /lang
 */
 
 /*  Copyright 2009-2011  Emmanuel GEORJON  (email : blog@emmanuelgeorjon.com)
@@ -25,13 +27,12 @@ Author URI: http://www.emmanuelgeorjon.com/
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('EGARW_TEXTDOMAIN',  		'eg-archives' );
-define('EG_ARCHIVES_WIDGET_ID',   	'eg_archives' );
-define('EG_ARCHIVES_STYLESHEET',  	'eg-archives.css' );
-define('EGARW_OPTIONS', 			'EG-Archives-Options');
-define('EGARW_VERSION', 			'2.0.0');
-define('EGARW_COREFILE',			__FILE__);
-
+define('EGARW_TEXTDOMAIN',  	'eg-archives' );
+define('EGARW_WIDGET_ID',  		'eg_archives' );
+define('EGARW_STYLESHEET',  	'eg-archives.css' );
+define('EGARW_OPTIONS', 		'EG-Archives-Options');
+define('EGARW_VERSION', 		'2.0.1');
+define('EGARW_COREFILE',		__FILE__);
 
 $EGARW_DEFAULT_OPTIONS = array(
 	'load_css' 					=> 1,
@@ -104,7 +105,7 @@ function eg_get_archives($args = '') {
 		$output = wp_get_archives($r);
 	} // End of standard type
 	else {
-	
+
 		// Begin of year/month archive list
 		if ($limit == 0) $limit = '';
 		if ( '' != $limit ) {
@@ -188,14 +189,14 @@ if (!class_exists('EG_Widget_202')) {
 	require_once('lib/eg-widgets280.inc.php');
 }
 
-Class EG_Archives_Widget extends EG_Widget_202 {
+Class EG_Archives_Widget extends EG_Widget_203 {
 
 	function EG_Archives_Widget() {
 		global $EG_ARCHIVE_FIELDS;
 		global $EG_ARCHIVE_DEFAULT_VALUES;
 
 		$widget_ops = array('classname' => 'widget_archives', 'description' => 'Advanced archives widget' );
-		$this->WP_Widget(EG_ARCHIVES_WIDGET_ID, 'EG-Archives', $widget_ops);
+		$this->WP_Widget(EGARW_WIDGET_ID, 'EG-Archives', $widget_ops);
 		$this->set_options(EGARW_TEXTDOMAIN, EGARW_COREFILE, 900 );
 		$this->set_form($EG_ARCHIVE_FIELDS, $EG_ARCHIVE_DEFAULT_VALUES, TRUE );
 	} // End of constructor
@@ -268,11 +269,11 @@ function eg_archives_init() {
 		$load_css    = (isset($plugin_options['load_css'])?$plugin_options['load_css']:1);
 
 		if (defined('EG_ARCHIVES_STYLESHEET') && $load_css) {
-			if (@file_exists(TEMPLATEPATH.'/'.EG_ARCHIVES_STYLESHEET)) {
-				wp_enqueue_style( EG_ARCHIVES_WIDGET_ID.'_stylesheet', get_stylesheet_directory_uri().'/'.EG_ARCHIVES_STYLESHEET);
+			if (@file_exists(TEMPLATEPATH.'/'.EGARW_STYLESHEET)) {
+				wp_enqueue_style( EGARW_WIDGET_ID.'_stylesheet', get_stylesheet_directory_uri().'/'.EGARW_STYLESHEET);
 			}
 			else {
-				wp_enqueue_style( EG_ARCHIVES_WIDGET_ID.'_stylesheet', $plugin_url.EG_ARCHIVES_STYLESHEET);
+				wp_enqueue_style( EGARW_WIDGET_ID.'_stylesheet', $plugin_url.EGARW_STYLESHEET);
 			}
 		} // End of if load_css
 	} // End of not is_admin
@@ -282,7 +283,7 @@ add_action('init', 'eg_archives_init', 1);
 register_uninstall_hook (__FILE__, 'eg_archives_uninstall' );
 
 if (is_admin()) {
-	require_once('eg-archives-admin.inc.php');
+	require_once('inc/eg-archives-admin.inc.php');
 }
 
 ?>

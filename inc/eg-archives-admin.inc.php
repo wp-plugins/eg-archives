@@ -1,9 +1,10 @@
 <?php
 
-if (! class_exists('EG_Plugin_120')) require('lib/eg-plugin.inc.php');
+if (! class_exists('EG_Plugin_122')) 
+	require(dirname(EGARW_COREFILE).'/lib/eg-plugin.inc.php');
 
-if (load_eg_form('egarw_options')) {
-	require('lib/eg-forms.inc.php');
+if (eg_detect_page('egarw_options')) {
+	require(dirname(EGARW_COREFILE).'/lib/eg-forms.inc.php');
 }
 
 if (! class_exists('EG_Archives_Admin')) {
@@ -15,24 +16,7 @@ if (! class_exists('EG_Archives_Admin')) {
 	 *
 	 * @package EG-Attachments
 	 */
-	Class EG_Archives_Admin extends EG_Plugin_120 {
-
-		function init() {
-
-			parent::init();
-
-			$this->add_page('egarw_options', 'options',
-							'EG-Archives Settings',			/* Page title 							*/
-							'EG-Archives',					/* Menu title 							*/
-							'manage_options', 				/* Access level / capability			*/
-							'options_page');
-
-			if (class_exists('EG_Form_200')) {
-				require('lib/eg-archives-admin-menu.inc.php');
-				$this->option_form = new EG_Form_200('egarw_options', $this->options_entry, $this->textdomain,
-														$this->plugin_url, $EGARW_OPTION_FORM);
-			}
-		} // End of init
+	Class EG_Archives_Admin extends EG_Plugin_122 {
 
 		function display_sidebar() {
 			global $locale;
@@ -64,6 +48,20 @@ if (! class_exists('EG_Archives_Admin')) {
 			$this->display_box('paypal', 'Donate', $string);
 		} // End of display_sidebar
 
+		
+		function admin_menu() {
+			$this->add_page( array(
+					'id' 				=> 'egarw_options',
+					'display_callback'	=> 'options_page')
+			);
+
+			parent::admin_menu();
+			
+			if (class_exists('EG_Form_210')) {
+				require($this->path.'inc/eg-archives-settings.inc.php');
+			}		
+		} // End of admin_menu
+		
 		/**
 		 * options_page
 		 *
@@ -73,8 +71,8 @@ if (! class_exists('EG_Archives_Admin')) {
 		 * @return 	none
 		 */
 		function options_page() {
-			add_action('eg_form_sidebar', array(&$this, 'display_sidebar'));
-			$this->option_form->display($this->options);
+			if (isset($this->options_form))
+				$this->options_form->display_page($this->options);
 		} // End of options_page
 
 	} // End of Class
@@ -83,10 +81,10 @@ if (! class_exists('EG_Archives_Admin')) {
 $eg_archives_admn = new EG_Archives_Admin('EG-Archives',
 											EGARW_VERSION ,
 											EGARW_COREFILE,
+											EGARW_TEXTDOMAIN,
 											EGARW_OPTIONS,
 											$EGARW_DEFAULT_OPTIONS);
-$eg_archives_admn->set_textdomain(EGARW_TEXTDOMAIN);
-$eg_archives_admn->set_stylesheets(FALSE, 'eg-archives-admin.css');
+$eg_archives_admn->set_stylesheets('css/eg-archives-admin.css');
 $eg_archives_admn->load();
 
 ?>
