@@ -3,8 +3,8 @@ Contributors: Emmanuel GEORJON
 Donate link: http://www.emmanuelgeorjon.com/
 Tags: archive, widget
 Requires at least: 3.0.0
-Tested up to: 3.2.1
-Stable tag: 2.0.1
+Tested up to: 3.3-beta2
+Stable tag: 2.0.2
 
 EG-Archives provides a widget (and a template tag) to display archives in yearly mode, AND monthly, according a specified pivot date.
 
@@ -109,10 +109,8 @@ None.
 
 == Changelog ==
 
-= Version 2.0.1 - Oct25th , 2011 =
+= Version 2.0.2 - Oct 26th, 2011 =
 
-* New: Bulgarian translation
-* Change: updated German translation (thanks to Franck)
 * Change: internal libraries
 
 = Version 2.0.0 - Sept 16th, 2011 =

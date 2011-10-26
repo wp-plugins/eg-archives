@@ -4,7 +4,7 @@
 	Plugin URI: http://www.emmanuelgeorjon.com/en/plugin-eg-archives-1745
 	Description: Enhanced archive widget.
 	Author: Emmanuel GEORJON
-	Version: 2.0.1
+	Version: 2.0.2
 	Author URI: http://www.emmanuelgeorjon.com/
 	Text Domain: eg-archives
 	Domain Path: /lang
@@ -31,7 +31,7 @@ define('EGARW_TEXTDOMAIN',  	'eg-archives' );
 define('EGARW_WIDGET_ID',  		'eg_archives' );
 define('EGARW_STYLESHEET',  	'eg-archives.css' );
 define('EGARW_OPTIONS', 		'EG-Archives-Options');
-define('EGARW_VERSION', 		'2.0.1');
+define('EGARW_VERSION', 		'2.0.0');
 define('EGARW_COREFILE',		__FILE__);
 
 $EGARW_DEFAULT_OPTIONS = array(
